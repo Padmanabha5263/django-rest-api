@@ -26,5 +26,4 @@ pip list
 pip freeze > requirements.txt //to list modules installed in txt file
 
 deactivate // to deactivate venv
-=======
->>>>>>> 4e39c759178082b0d463a4bc262457548f5774f8
+
