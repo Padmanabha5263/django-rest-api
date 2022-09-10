@@ -1,2 +1,13 @@
-books/
-books/1
+http://127.0.0.1:8000/books/
+http://127.0.0.1:8000/books/1
+
+
+
+
+http://127.0.0.1:8000/authors/
+http://127.0.0.1:8000/authors/1/
+
+
+
+http://127.0.0.1:8000/publications/
+http://127.0.0.1:8000/publications/1/
