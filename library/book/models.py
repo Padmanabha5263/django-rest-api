@@ -8,6 +8,7 @@ class Author(models.Model):
     email = models.EmailField(max_length=60)
     dob = models.DateField()
     address = models.CharField(max_length=80)
+    dateTimeCreated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     isAlive = models.BooleanField(default=True)
 
     def __str__(self):
@@ -19,6 +20,7 @@ class Publication(models.Model):
     addresss = models.CharField(max_length=80)
     mobileNum = models.BigIntegerField()
     email =  models.EmailField(max_length=60)
+    dateTimeCreated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     isActive = models.BooleanField(default=True)
 
     def __str__(self):
@@ -30,7 +32,7 @@ class Book(models.Model):
     discription = models.CharField(max_length=100)
     authorId = models.ForeignKey(Author, on_delete=models.CASCADE)
     publicationId = models.ForeignKey(Publication, on_delete=models.CASCADE)
-
+    dateTimeCreated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     def __str__(self):
         return f'name = {self.name}'
 
