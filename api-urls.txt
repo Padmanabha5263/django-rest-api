@@ -1,13 +1,13 @@
-http://127.0.0.1:8000/books/
-http://127.0.0.1:8000/books/1
+http://127.0.0.1:8000/books/        --------get, post
+http://127.0.0.1:8000/books/1       --------get, put, delete
 
 
 
 
-http://127.0.0.1:8000/authors/
-http://127.0.0.1:8000/authors/1/
+http://127.0.0.1:8000/authors/        --------get, post
+http://127.0.0.1:8000/authors/1/        --------get, put, delete
 
 
 
-http://127.0.0.1:8000/publications/
-http://127.0.0.1:8000/publications/1/
+http://127.0.0.1:8000/publications/     --------get, post
+http://127.0.0.1:8000/publications/1/   --------get, put, delete
