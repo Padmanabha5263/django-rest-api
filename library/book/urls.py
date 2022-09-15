@@ -13,6 +13,5 @@ urlpatterns = [
 
     path('publications/', views.publications, name="publications"),
     path('publications/<str:pk>/', views.publication, name="perticular-publication"),
-
     path('', RedirectView.as_view(url="books/"))
 ]

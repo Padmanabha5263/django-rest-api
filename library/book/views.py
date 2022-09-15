@@ -1,16 +1,19 @@
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 from . import models
 from .serializers import BookSerializer, AuthorSerializer, PublicationSerializer
+from .permissions import AdminOrReadOnly
 # Create your views here.
 
 
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([AdminOrReadOnly])
 def books(request):
     if(request.method == "GET"):
         books = models.Book.objects.all()
@@ -21,11 +24,12 @@ def books(request):
         serializer = BookSerializer(data=request.data)
         if(serializer.is_valid()):
             serializer.save()
-            return Response({"message":"Successfully book added"}, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AdminOrReadOnly])
 def bookDetile(request, pk):
     try:
         books = models.Book.objects.get(pk=pk)
@@ -51,6 +55,7 @@ def bookDetile(request, pk):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([AdminOrReadOnly])
 def authors(request):
     if(request.method=='GET'):
         author = models.Author.objects.all()
@@ -61,11 +66,12 @@ def authors(request):
         serializer = AuthorSerializer(data=request.data)
         if(serializer.is_valid()):
             serializer.save()
-            return Response({"message": "Author added successfully"}, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AdminOrReadOnly])
 def author(request, pk):
     try:
         author = models.Author.objects.get(pk=pk)
@@ -85,12 +91,13 @@ def author(request, pk):
 
     if(request.method=='DELETE'):
         author.delete()
-        return Response({"message":"author deleted successfully"},status=status.HTTP_200_OK)
+        return Response({"message":"Author deleted successfully"},status=status.HTTP_200_OK)
 
 
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([AdminOrReadOnly])
 def publications(request):
     if(request.method=='GET'):
         pub = models.Publication.objects.all()
@@ -101,10 +108,11 @@ def publications(request):
         serializer = PublicationSerializer(data=request.data)
         if(serializer.is_valid()):
             serializer.save()
-            return Response({"message": "Publication added successfully"}, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AdminOrReadOnly])
 def publication(request, pk):
     try:
         pub = models.Publication.objects.get(pk=pk)
